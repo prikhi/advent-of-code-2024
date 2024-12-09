@@ -3,7 +3,7 @@ module Data.Set (
     empty,
     fromList,
     toList,
-    contains,
+    member,
     insert,
 ) where
 
@@ -49,5 +49,5 @@ insert k = Set . M.insert k () . fromSet
 
 
 -- | Does the Set contain the given element?
-contains :: (Ord a) => a -> Set a -> Bool
-contains k = isJust . M.lookup k . fromSet
+member :: (Ord a) => a -> Set a -> Bool
+member k = isJust . M.lookup k . fromSet
