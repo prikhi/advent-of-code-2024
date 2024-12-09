@@ -4,6 +4,7 @@ module Data.Set (
     fromList,
     toList,
     member,
+    size,
     insert,
 ) where
 
@@ -51,3 +52,8 @@ insert k = Set . M.insert k () . fromSet
 -- | Does the Set contain the given element?
 member :: (Ord a) => a -> Set a -> Bool
 member k = isJust . M.lookup k . fromSet
+
+
+-- | Count the elements in a Set
+size :: Set a -> Int
+size = M.size . fromSet

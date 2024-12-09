@@ -7,6 +7,7 @@ module Data.Map (
     empty,
     fromList,
     toList,
+    size,
     keys,
     mapKeys,
     foldrWithKeys,
@@ -78,6 +79,13 @@ toList :: Map a b -> [(a, b)]
 toList = \case
     Leaf -> []
     Branch BranchData {..} -> concat [toList bdLeft, [(bdKey, bdVal)], toList bdRight]
+
+
+-- | Count the elements in a Map
+size :: Map a b -> Int
+size = \case
+    Leaf -> 0
+    Branch BranchData {..} -> size bdLeft + size bdRight + 1
 
 
 -- | Extract all keys from a Map
